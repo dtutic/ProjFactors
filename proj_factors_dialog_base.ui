@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProjFactorsDialogBase</class>
+ <widget class="QDialog" name="ProjFactorsDialogBase">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>525</width>
+    <height>484</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Projection Factors</string>
+  </property>
+  <widget class="QDialogButtonBox" name="button_box">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>440</y>
+     <width>171</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::RightToLeft</enum>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::Apply|QDialogButtonBox::Close</set>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="layer_selected">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>120</y>
+     <width>291</width>
+     <height>29</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_factor_selected">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>341</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Select map projection factor to calculate:</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="factor_selected">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>40</y>
+     <width>221</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Meridian scale</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Parallel scale</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Aeral scale</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Meridian convergence</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Meridian-parallel angle</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Angle distortion</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Max linear scale</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Min linear scale</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLineEdit" name="input_filename">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>360</y>
+     <width>391</width>
+     <height>33</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="browse_file">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>360</y>
+     <width>95</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Browse</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="check_add_result">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>400</y>
+     <width>221</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Add result to canvas</string>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="progressBar">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>440</y>
+     <width>281</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="value">
+    <number>0</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_output">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>330</y>
+     <width>121</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Output raster:</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="units_angle">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>40</y>
+     <width>181</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>degrees</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>radians</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_units">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>44</y>
+     <width>51</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Value:</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="units_scale">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>40</y>
+     <width>181</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>scale</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>distortion = scale - 1</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>scale*1000</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>distortion*1000</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLineEdit" name="input_bbox">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>190</y>
+     <width>391</width>
+     <height>33</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="check_bbox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>160</y>
+     <width>441</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Generate factor for geographic bounding box [north, south, west, east]:</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="check_layer">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>90</y>
+     <width>341</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Generate factor for layer extent (in geographic CRS):</string>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="check_raster_size">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>240</y>
+     <width>291</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Raster size (width[,height]):</string>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="check_pixel_size">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>240</y>
+     <width>241</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Pixel size (ewres[,nsres]):</string>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="input_raster_size">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>280</y>
+     <width>171</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>1000</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="input_pixel_size">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>280</y>
+     <width>261</width>
+     <height>33</height>
+    </rect>
+   </property>
+  </widget>
+  <zorder>units_angle</zorder>
+  <zorder>units_scale</zorder>
+  <zorder>button_box</zorder>
+  <zorder>layer_selected</zorder>
+  <zorder>label_factor_selected</zorder>
+  <zorder>factor_selected</zorder>
+  <zorder>input_filename</zorder>
+  <zorder>browse_file</zorder>
+  <zorder>check_add_result</zorder>
+  <zorder>progressBar</zorder>
+  <zorder>label_output</zorder>
+  <zorder>label_units</zorder>
+  <zorder>input_bbox</zorder>
+  <zorder>check_bbox</zorder>
+  <zorder>check_layer</zorder>
+  <zorder>check_raster_size</zorder>
+  <zorder>check_pixel_size</zorder>
+  <zorder>input_raster_size</zorder>
+  <zorder>input_pixel_size</zorder>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>button_box</sender>
+   <signal>accepted()</signal>
+   <receiver>ProjFactorsDialogBase</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_box</sender>
+   <signal>rejected()</signal>
+   <receiver>ProjFactorsDialogBase</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

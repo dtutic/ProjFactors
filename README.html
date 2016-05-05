@@ -1,0 +1,59 @@
+<html>
+<body>
+<h3>Projection Factors Visualisation Plugin</h3>
+
+<p><i>Author: Drazen Tutic<br>
+Institution: University of Zagreb, Faculty of Geodesy<br>
+e-mail: dtutic@geof.hr<br>
+Date: 05/05/2016</i></p>
+
+
+<p>Every map projection has distinct properties which are usually analysed by some factors.</p>
+<p>PROJ4 can calculate them and print out if -V option is used.</p>
+
+<p>In <i>proj_api.h</i> this function is not published, so standalone proj binary is used.</p>
+
+<p>Available factors are:</p>
+<ol>
+<li>Meridian scale (h or m) is linear scale along meridians. If it equals to 1, length of meridians 
+is preserved and such projections are one kind of equidistant projections, e.g. normal 
+aspect conic equidistant projection.</li>
+
+<li>Parallel scale (k or n) is linear scale along parallels. If it equals to 1, length of parallels 
+is preserved and such projections are one kind of equidistant projections, e.g. normal aspect 
+ortographic projection.</li>
+
+<li>Areal scale (s or p) is ratio of differential area in plane and spheroid. If it equals to 1,
+projection is equiareal, e.g. cylindrical equal area projection. p = m*n*sin(theta) = a * b</li>
+
+<li>Angular distortion (w) is maximal difference of angles in plane and spheroid in a point. 
+If equals to 0, map projection is conformal, e.g. Mercator projection. m = n = a = b</li>
+
+<li>Meridian-parallel angle (theta) is angle between mapped meridian and parallel. For example,
+normal aspect cylindrical projections have theta = 90 degrees, but not all are conformal.</li>
+
+<li>Convergence (c) is the angle from positive northing axis and tangent to meridian in a point measured positive 
+clockwise. In Mercator projection convergence is 0 and bearings from map are true azimuths.</li>
+
+<li>Maximal linear scale (a) of a point defines major axis of Tissot's indicatrix.</li>
+
+<li>Minimal linear scale (b) of a point defines minor axis of Tissot's indicatrix.</li>
+</ol>
+<p><b>Main purpose of this plugin is to visualize distortions, scales or angles in the active area, i.e.
+over the area where data is present. This can help one to decide whether special consideration of
+distortions is necessary for calculations or analysis performed with GIS operations.</b></p>
+
+<p><b>Factors are calculated as raster map for project CRS which should not be geographic or geocentric.</b></p>
+
+<p><b>Area for which factors are to be calculated is defined in geographic coordinates.</b></p>
+
+<p><b><font color="red">Some projections can't map whole spheroid. Start with smaller regions and expand as necessary.</font></b></p>
+
+<p><b><font color="red">Do not use to big raster if it is not necessary (it will take long to generate and resource problems may occur). Size of between 200 and 1000 px should be enough for most purposes.</font></b></p>
+
+<p>Use inverted pseudocolor spectral palette on min-max values range with raster contour extraction operation to generate labelled isolines for even better understanding of distribution and values of distortions and scales.</p>
+<img src="example.png"><br>
+Linear scale in Lambert conformal conic projection for Croatia with two standard parallels.
+
+</body>
+</html>
