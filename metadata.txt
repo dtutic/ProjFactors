@@ -31,9 +31,9 @@ email=dtutic@geof.hr
 # Tags are comma separated with spaces allowed
 tags=map projections, distortions, linear scale, angle distortion
 
-homepage=
-tracker=
-repository=
+homepage=http://dtutic.github.io/ProjFactors
+tracker=https://github.com/dtutic/projFactors/issues
+repository=https://github.com/dtutic/projFactors
 icon=icon.png
 # experimental flag
 experimental=False
