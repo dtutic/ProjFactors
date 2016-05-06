@@ -1,6 +1,9 @@
 # ProjFactors
 QGIS Plugin for map projections distortions visualisation
 
+Presentation on FOSS4G Europe, Como, 2016:
+https://drive.google.com/file/d/0B46kztqdEkOHQXJGd3RlUlF3NWs/view
+
 Author: Drazen Tutic
 Institution: University of Zagreb, Faculty of Geodesy
 e-mail: dtutic@geof.hr
