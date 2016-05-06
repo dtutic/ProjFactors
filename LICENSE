@@ -1,20 +1,4 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Gist
- @dtutic
- Watch 20
-  Star 62
-  Fork 75 sourcepole/qgis-openlayers-plugin
- Code  Pull requests 6  Wiki  Pulse  Graphs
-Branch: master Find file Copy pathqgis-openlayers-plugin/LICENSE
-1bc9ca2  on Jan 29, 2010
-@pka pka First experimental version
-1 contributor
-RawBlameHistory     341 lines (281 sloc)  17.6 KB
-﻿		    GNU GENERAL PUBLIC LICENSE
+		    GNU GENERAL PUBLIC LICENSE
 		       Version 2, June 1991
 
  Copyright (C) 1989, 1991 Free Software Foundation, Inc.
@@ -354,5 +338,3 @@ proprietary programs.  If your program is a subroutine library, you may
 consider it more useful to permit linking proprietary applications with the
 library.  If this is what you want to do, use the GNU Library General
 Public License instead of this License.
-Status API Training Shop Blog About
-© 2016 GitHub, Inc. Terms Privacy Security Contact Help
