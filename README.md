@@ -54,3 +54,5 @@ Some projections can't map whole spheroid. Start with smaller regions and expand
 Do not use to big raster if it is not necessary (it will take long to generate and resource problems may occur). Size of between 200 and 1000 px should be enough for most purposes.
 
 Use inverted pseudocolor spectral palette on min-max values range with raster contour extraction operation to generate labelled isolines for even better understanding of distribution and values of distortions and scales.
+
+![alt tag](example.png)
