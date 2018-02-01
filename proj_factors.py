@@ -7,8 +7,8 @@
                               -------------------
         begin                : 2014-12-18
         git sha              : $Format:%H$
-        copyright            : (C) 2014 by Drazen Tutic
-        email                : dtutic@geof.hr
+        copyright            : (C) 2018 by Drazen Tutic, Viktoria Duracic
+        email                : dtutic@geof.hr, viktoria.duracic@gmail.com
  ***************************************************************************/
 
 /***************************************************************************
@@ -585,7 +585,76 @@ class ProjFactors:
             if not rlayer.isValid():
                 self.iface.messageBar().pushMessage("Error", "Layer failed to load!", level=QgsMessageBar.CRITICAL, duration=5)
             else:
-                QgsMapLayerRegistry.instance().addMapLayer(rlayer)        
+                provider = rlayer.dataProvider()
+                stats = provider.bandStatistics(1, QgsRasterBandStats.All)
+                min = stats.minimumValue
+                max = stats.maximumValue
+                v25 = min+(max-min)*0.25    
+                v50 = (max+min)*0.5 
+                v75 = min+(max-min)*0.75    
+                s = QgsRasterShader()
+                c = QgsColorRampShader()
+                c.setColorRampType(QgsColorRampShader.INTERPOLATED)
+                i = []
+                i.append(QgsColorRampShader.ColorRampItem(min, QColor('#2b83ba'), str(min))) 
+                i.append(QgsColorRampShader.ColorRampItem(v25, QColor('#abdda4'), str(v25)))
+                i.append(QgsColorRampShader.ColorRampItem(v50, QColor('#ffffbf'), str(v50)))
+                i.append(QgsColorRampShader.ColorRampItem(v75, QColor('#fdae61'), str(v75)))
+                i.append(QgsColorRampShader.ColorRampItem(max, QColor('#d7191c'), str(max))) 
+                c.setColorRampItemList(i)
+                s.setRasterShaderFunction(c)
+                ps = QgsSingleBandPseudoColorRenderer(rlayer.dataProvider(), 1, s)
+                rlayer.setRenderer(ps)              
+                QgsMapLayerRegistry.instance().addMapLayer(rlayer)
+
+                
+                
+                srs = osr.SpatialReference()
+                srs.ImportFromEPSG(4326)                
+                
+                vpath = os.path.dirname(os.path.abspath(self.dlg.input_filename.text()))
+                vfile = os.path.join(vpath, baseName + "_isolines.shp")
+               
+                ogr_ds = ogr.GetDriverByName("ESRI Shapefile").CreateDataSource(vfile)
+                ogr_lyr = ogr_ds.CreateLayer("isolines", srs, ogr.wkbLineString)
+                ogr_lyr.CreateField(ogr.FieldDefn("ID", ogr.OFTInteger))
+                ogr_lyr.CreateField(ogr.FieldDefn("projfact", ogr.OFTReal))
+                tif_dataset = gdal.Open(self.dlg.input_filename.text(), GA_ReadOnly)
+                band = 1
+                contour_interval = math.pow(10,math.floor(math.log10((max-min)/10)))*2
+                contour_base = 0
+                fixed_level_list = []
+                use_no_data_flag = 0
+                no_data_value = -9999
+                id_field = 0  # first field defined above
+                elevation_field = 1  # second (MMI) field defined above
+                gdal.ContourGenerate(tif_dataset.GetRasterBand(band),
+                                 contour_interval,
+                                 contour_base,
+                                 fixed_level_list,
+                                 use_no_data_flag,
+                                 no_data_value,
+                                 ogr_lyr,
+                                 id_field,
+                                 elevation_field)
+                ogr_ds = None
+                
+                clayer = QgsVectorLayer(vfile, baseName+"_isolines", "ogr")
+                QgsMapLayerRegistry.instance().addMapLayer(clayer)
+                
+                symbols = clayer.rendererV2().symbols()
+                symbol = symbols[0]
+                symbol.setColor(QColor.fromRgb(0,0,0))
+
+                label = QgsPalLayerSettings()
+                label.readFromLayer(clayer)
+                label.enabled = True
+                label.fieldName="projfact"
+                label.placement= QgsPalLayerSettings.Line
+                label.setDataDefinedProperty(QgsPalLayerSettings.Size,True,True,"8","")
+                label.decimals = 4
+                label.formatNumbers = True
+                label.writeToLayer(clayer)        
 
     def prepare(self):
         self.updateDialog()
