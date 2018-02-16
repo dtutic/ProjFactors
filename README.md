@@ -4,7 +4,7 @@ QGIS Plugin for map projections distortions visualisation
 Presentation on FOSS4G Europe, Como, 2016:
 https://drive.google.com/file/d/0B46kztqdEkOHQXJGd3RlUlF3NWs/view
 
-Author: Drazen Tutic
+Authors: Drazen Tutic, Viktoria Duracic
 Institution: University of Zagreb, Faculty of Geodesy
 e-mail: dtutic@geof.hr
 Date: 05/05/2016
@@ -53,6 +53,6 @@ Some projections can't map whole spheroid. Start with smaller regions and expand
 
 Do not use to big raster if it is not necessary (it will take long to generate and resource problems may occur). Size of between 200 and 1000 px should be enough for most purposes.
 
-Use inverted pseudocolor spectral palette on min-max values range with raster contour extraction operation to generate labelled isolines for even better understanding of distribution and values of distortions and scales.
+Inverted pseudocolor spectral palette on min-max values range with raster contour extraction operation with labelled isolines are performed as default style since version 0.2 for better understanding of distribution and values of distortions and scales. User can change colours or extract isolines if default style is not appropriate.
 
 ![alt tag](example.png)

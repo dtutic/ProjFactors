@@ -11,13 +11,12 @@ name=Projection Factors
 qgisMinimumVersion=2.0
 description=Visualise scales, distortions and meridian-parallel angle in map projections.
 about=Main purpose of this plugin is to visualize distortions, scales or angles in the active area, i.e. over the area where data is present. This can help one to decide whether special consideration of distortions is necessary for calculations or analysis performed with GIS operations.
-    Factors are calculated as raster map for project CRS which should not be geographic or geocentric.
-    Area for which factors are to be calculated is defined in geographic coordinates.
+    Factors are calculated as raster maps for project CRS which should not be geographic or geocentric.
+    Area for which factors are to be calculated and resulting raaster map are defined in geographic coordinates.
     Some projections can't map whole spheroid. Start with smaller regions and expand as necessary.
-    Do not use to big raster if it is not necessary (it will take long to generate and resource problems may occur). Size of between 200 and 1000 px should be enough for most purposes.
-    Use inverted pseudocolor spectral palette on min-max values range with raster contour extraction operation to generate labelled isolines for even better understanding of distribution and values of distortions and scales.
-version=0.1
-author=Drazen Tutic
+    Do not use to big raster if it is not necessary (it will take long to generate and resource problems may occur since standalone binary of PROJ4 is used). Size of between 200 and 1000 px should be enough for most purposes.
+version=0.2
+author=Drazen Tutic and Viktoria Duracic
 email=dtutic@geof.hr
 
 # End of mandatory metadata
@@ -26,14 +25,16 @@ email=dtutic@geof.hr
 
 
 # Uncomment the following line and add your changelog:
-# changelog=
+changelog=Version 0.2
+    Added automatic styling with inverted pseudocolor spectral palette on min-max values range and raster contour extraction operation to generate labelled isolines for even better understanding of distribution and values of distortions and scales.
+	Fixed some minor bugs.
 
 # Tags are comma separated with spaces allowed
 tags=map projections, distortions, linear scale, angle distortion
 
-homepage=http://dtutic.github.io/ProjFactors
-tracker=https://github.com/dtutic/projFactors/issues
-repository=https://github.com/dtutic/projFactors
+homepage=http://geof-osgl.github.io/ProjFactors
+tracker=http://github.com/geof-osgl/projFactors/issues
+repository=http://github.com/geof-osgl/projFactors
 icon=icon.png
 # experimental flag
 experimental=False

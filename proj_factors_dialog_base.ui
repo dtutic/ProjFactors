@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>525</width>
+    <width>574</width>
     <height>484</height>
    </rect>
   </property>
@@ -257,12 +257,12 @@
     <rect>
      <x>10</x>
      <y>160</y>
-     <width>441</width>
+     <width>500</width>
      <height>26</height>
     </rect>
    </property>
    <property name="text">
-    <string>Generate factor for geographic bounding box [north, south, west, east]:</string>
+    <string>Bounding box in geographic coordinates [north, south, west, east]:</string>
    </property>
   </widget>
   <widget class="QCheckBox" name="check_layer">
@@ -273,12 +273,12 @@
     <rect>
      <x>10</x>
      <y>90</y>
-     <width>341</width>
+     <width>500</width>
      <height>26</height>
     </rect>
    </property>
    <property name="text">
-    <string>Generate factor for layer extent (in geographic CRS):</string>
+    <string>Calculate bounding box from layer:</string>
    </property>
    <property name="checked">
     <bool>true</bool>

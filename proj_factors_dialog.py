@@ -7,8 +7,8 @@
                              -------------------
         begin                : 2014-12-18
         git sha              : $Format:%H$
-        copyright            : (C) 2014 by Drazen Tutic
-        email                : dtutic@geof.hr
+        copyright            : (C) 2018 by Drazen Tutic, Viktoria Duracic
+        email                : dtutic@geof.hr, viktoria.duracic@gmail.com
  ***************************************************************************/
 
 /***************************************************************************
